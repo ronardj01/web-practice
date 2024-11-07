@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class DBPersonaje {
 
-    //Insertar personaje en la base de Datos
+    //Insertar personaje en la base de Datos Personaje
     public static ArrayList<Personaje> getAllChar() throws SQLException {
         ArrayList<Personaje> personajes = new ArrayList<>();
         String query = "SELECT id, nombre FROM personajes";
