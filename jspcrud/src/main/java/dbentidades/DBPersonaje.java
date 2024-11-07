@@ -27,4 +27,13 @@ public abstract class DBPersonaje {
        
         return personajes;
     }
+    
+    public static void insertChar(Personaje personaje) throws SQLException {
+        String query = "INSERT INTO `personajes` (`nombre`) VALUES ('"+ personaje.getNombre() + "')";
+        Connection conn = DBConnection.getConnection();
+        Statement stm = conn.createStatement();
+        
+        stm.executeUpdate(query);
+        conn.close();
+    }
 }
