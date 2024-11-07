@@ -1,5 +1,7 @@
-package newpackage;
 
+package controllers;
+
+import dbentidades.ProductoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -7,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import entidades.Producto;
 
 
 @WebServlet(name = "ActualizarProducto", urlPatterns = {"/ActualizarProducto"})
@@ -22,7 +25,7 @@ public class ActualizarProductoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));  // Obtener el ID del producto a actualizar
-        Producto producto = productoDAO.obtenerPorId(id);  // Obtener el producto desde la base de datos
+        Producto producto = (Producto) productoDAO.obtenerPorId(id);  // Obtener el producto desde la base de datos
         request.setAttribute("producto", producto);  // Pasar el producto a la vista
         request.getRequestDispatcher("/actualizarProducto.jsp").forward(request, response);  // Redirigir a la página para actualizar
     }
@@ -35,6 +38,7 @@ public class ActualizarProductoServlet extends HttpServlet {
         Producto producto = new Producto(id, nombre);  // Crear un objeto Producto con los nuevos datos
         if (productoDAO.actualizar(producto)) {
             response.sendRedirect("ProductoServlet?action=mostrar");  // Redirigir a la lista de productos
+        } else {
         }
     }
 

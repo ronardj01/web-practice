@@ -1,7 +1,8 @@
-package newpackage;
+package dbentidades;
 
 import java.sql.*;
 import java.util.*;
+import entidades.Producto;
 
 public class ProductoDAO {
 
@@ -75,7 +76,7 @@ public class ProductoDAO {
         return res;
     }
 
-    Producto obtenerPorId(int id) {
+    public Producto obtenerPorId(int id) {
         Producto producto = null;
         try {
             String sql = "SELECT * FROM Producto WHERE id = ?";

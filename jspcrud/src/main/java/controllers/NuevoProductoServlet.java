@@ -1,12 +1,13 @@
-package newpackage;
+package controllers;
 
+import dbentidades.ProductoDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import entidades.Producto;
 
 @WebServlet(name = "NuevoProductoServlet", urlPatterns = {"/NuevoProductoServlet"})
 public class NuevoProductoServlet extends HttpServlet {
