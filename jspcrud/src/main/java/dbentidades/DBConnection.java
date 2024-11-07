@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class DBConnection {
 
     private static final String URL = "jdbc:mysql://localhost/jspcrud?userSSL=false&allowPublicKeyRetrieval=true";
-    private static final String USER = System.getenv("DB_USER_PRUEBA");
-    private static final String PASS = System.getenv("DB_PASS_PRUEBA");
-    
+    private static final String USER = "root";
+    private static final String PASS = "12345678";
+    //amanda conectada
     public static Connection getConnection(){
         Connection conn = null;
         try {
