@@ -1,4 +1,6 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="entidades.Personaje"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,14 +22,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                        ArrayList<Personaje> personajes = (ArrayList<Personaje>) request.getAttribute("personajes");
+                        int count = 1;
+                        for (Personaje personaje : personajes) {
+                    %>
                     <tr>
-                        <th scope="row">1</th>
-                        <td class="fs-4">Suzuki Satoru</td>
+                        <th scope="row"><%= count%></th>
+                        <td class="fs-4"><%= personaje.getNombre()%></td>
                         <td>
-                            <button type="button" class="btn btn-outline-primary"><a class="nav-link"  href="#">Modificar</a></button>
-                            <button type="button" class="btn btn-outline-danger ms-5"><a class="nav-link"  href="#">Eliminar</a></button>
+                            <button type="button" class="btn btn-outline-primary">
+                                <a class="nav-link"  href="ModificarPersonajeController?id=<%= personaje.getId()%>">Modificar</a>
+                            </button>
+                            <button type="button" class="btn btn-outline-danger ms-5">
+                                <a class="nav-link"  href="EliminarPersonajeController?id=<%= personaje.getId()%>"</a>
+                            </button>
                         </td>
                     </tr>
+                    <% count++;
+                        }%>
                 </tbody>
             </table>
         </div>

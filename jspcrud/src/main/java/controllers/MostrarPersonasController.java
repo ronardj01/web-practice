@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 @WebServlet(name = "MostrarPersonasController", urlPatterns = {"/MostrarPersonasController"})
 public class MostrarPersonasController extends HttpServlet {
 
@@ -24,10 +23,10 @@ public class MostrarPersonasController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             ArrayList<Personaje> personajes = DBPersonaje.getAllChar();
-            System.out.println(personajes.get(0));
-            System.out.println(personajes.get(1));
+            request.setAttribute("personajes", personajes);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -40,7 +39,7 @@ public class MostrarPersonasController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Personaje newPersonaje = new Personaje(45, "Albedo"); 
+        Personaje newPersonaje = new Personaje(45, "Albedo");
         try {
             DBPersonaje.insertChar(newPersonaje);
         } catch (SQLException ex) {
