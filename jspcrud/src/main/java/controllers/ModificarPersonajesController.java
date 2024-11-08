@@ -38,7 +38,10 @@ public class ModificarPersonajesController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nuevoNombre = request.getParameter("nombre");
+        int viejoId = Integer.parseInt(request.getParameter("id"));
+        
+        System.out.println(nuevoNombre + " su id es " + viejoId);
     }
 
   

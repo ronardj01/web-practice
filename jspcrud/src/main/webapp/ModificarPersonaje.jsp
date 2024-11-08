@@ -18,6 +18,7 @@
                             <input type="text" class="form-control pt-4 fs-3" id="floatingInput" name="nombre">
                             <label for="floatingInput">Nuevo Nombre</label>
                         </div>
+                        <input type="hidden" value="${id}" name="id">
                         <button class="btn btn-primary ms-3" type="submit">Insertar</button>
                     </form>
             </div>

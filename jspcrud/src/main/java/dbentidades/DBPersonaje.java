@@ -16,7 +16,7 @@ public abstract class DBPersonaje {
         Connection conn = DBConnection.getConnection();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
-        
+
         while (rs.next()) {
             Personaje personaje = new Personaje();
             personaje.setId(rs.getInt("id"));
@@ -24,16 +24,30 @@ public abstract class DBPersonaje {
             personajes.add(personaje);
         }
         conn.close();
-       
+
         return personajes;
     }
-    
+
     public static void insertChar(Personaje personaje) throws SQLException {
-        String query = "INSERT INTO `personajes` (`nombre`) VALUES ('"+ personaje.getNombre() + "')";
+        String query = "INSERT INTO `personajes` (`nombre`) VALUES ('" + personaje.getNombre() + "')";
         Connection conn = DBConnection.getConnection();
         Statement stm = conn.createStatement();
-        
+
         stm.executeUpdate(query);
         conn.close();
+    }
+
+    public static Personaje searchChar(int id) throws SQLException {
+        Personaje personaje = new Personaje();
+        String query = "SELECT id, nombre FROM personajes Where id = ' " + id + "'";
+        Connection conn = DBConnection.getConnection();
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery(query);
+        
+        while(rs.next()) {
+            personaje.setId(rs.getInt("id"));
+            personaje.setNombre("nombre");
+        }
+    return personaje;
     }
 }
