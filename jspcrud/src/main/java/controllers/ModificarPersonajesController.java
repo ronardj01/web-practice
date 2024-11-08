@@ -25,7 +25,7 @@ public class ModificarPersonajesController extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         int id = Integer.parseInt(request.getParameter("id"));
-        String nombre = request.getParameter("nombre");
+        String nombre = request.getParameter("nombre").replace("_", " ");
         request.setAttribute("id", id);
         request.setAttribute("nombre", nombre);
         RequestDispatcher rd = request.getRequestDispatcher("ModificarPersonaje.jsp");
