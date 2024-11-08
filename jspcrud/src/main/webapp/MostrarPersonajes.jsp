@@ -17,14 +17,14 @@
                 <h2 class="h2">Insertar un Personaje Nuevo</h2>
                 <form class="border p-5 mt-3" action="MostrarPersonasController" method="POST">
                     <div class="form-floating m-3">
-                        <input type="text" class="form-control pt-4 fs-3" id="floatingInput">
+                        <input type="text" class="form-control pt-4 fs-3" id="floatingInput" name="nombre">
                         <label for="floatingInput">Nombre del personaje</label>
                     </div>
                     <button class="btn btn-primary" type="submit">Insertar</button>
                 </form>
             </div>
 
-            <div>
+            <div class="mb-5">
                 <h2 class="h2">Lista de todos los personajes</h2>
                 <table class="table table-secondary table-striped table-hover">
                     <thead>
@@ -38,17 +38,19 @@
                         <%
                             ArrayList<Personaje> personajes = (ArrayList<Personaje>) request.getAttribute("personajes");
                             int count = 1;
+                            String param;
                             for (Personaje personaje : personajes) {
+                            param ="?id=" + personaje.getId() + "&nombre=" + personaje.getNombre().replace(" ", "_");
                         %>
                         <tr>
                             <th scope="row"><%= count%></th>
                             <td class="fs-4"><%= personaje.getNombre()%></td>
                             <td>
                                 <button type="button" class="btn btn-outline-primary">
-                                    <a class="nav-link"  href="ModificarPersonajesController?id=<%= personaje.getId()%>">Modificar</a>
+                                    <a class="nav-link"  href="ModificarPersonajesController<%= param%>">Modificar</a>
                                 </button>
                                 <button type="button" class="btn btn-outline-danger ms-5">
-                                    <a class="nav-link"  href="EliminarPersonajesController?id=<%= personaje.getId()%>">Eliminar</a>
+                                    <a class="nav-link"  href="EliminarPersonajesController<%= param%>>">Eliminar</a>
                                 </button>
                             </td>
                         </tr>
