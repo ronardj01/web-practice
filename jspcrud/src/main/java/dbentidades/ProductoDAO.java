@@ -11,7 +11,7 @@ public class ProductoDAO {
     public ProductoDAO() {
         try {
             // Establecer la conexión a la base de datos
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/appmvcmodulo3", "root", "12345678");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/jspcrud?useSSL=false&allowPublicKeyRetrieval=true", "root", "12345678");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -22,7 +22,7 @@ public class ProductoDAO {
         List<Producto> productos = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Producto");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM producto");
             while (rs.next()) {
                 Producto producto = new Producto(rs.getInt("id"), rs.getString("nombre"));
                 productos.add(producto);
@@ -37,7 +37,7 @@ public class ProductoDAO {
     public boolean agregar(Producto producto) {
         boolean res = false;
         try {
-            String sql = "INSERT INTO Producto (nombre) VALUES (?)";
+            String sql = "INSERT INTO producto (nombre) VALUES (?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, producto.getNombre());
             res = stmt.executeUpdate() > 0;
@@ -51,7 +51,7 @@ public class ProductoDAO {
     public boolean actualizar(Producto producto) {
         boolean res = false;
         try {
-            String sql = "UPDATE Producto SET nombre = ? WHERE id = ?";
+            String sql = "UPDATE producto SET nombre = ? WHERE id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, producto.getNombre());
             stmt.setInt(2, producto.getId());
@@ -66,7 +66,7 @@ public class ProductoDAO {
     public boolean borrar(int id) {
         boolean res = false;
         try {
-            String sql = "DELETE FROM Producto WHERE id = ?";
+            String sql = "DELETE FROM producto WHERE id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
             res = stmt.executeUpdate() > 0;
@@ -79,7 +79,7 @@ public class ProductoDAO {
     public Producto obtenerPorId(int id) {
         Producto producto = null;
         try {
-            String sql = "SELECT * FROM Producto WHERE id = ?";
+            String sql = "SELECT * FROM producto WHERE id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
