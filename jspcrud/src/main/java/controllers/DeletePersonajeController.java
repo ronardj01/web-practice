@@ -1,6 +1,7 @@
 
 package controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -23,7 +24,13 @@ public class DeletePersonajeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nombre = request.getParameter("nombre").replace("_", " ");
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        request.setAttribute("nombre", nombre);
+        request.setAttribute("id", id);
+        RequestDispatcher rd = request.getRequestDispatcher("EliminarPersonaje.jsp");
+        rd.forward(request, response);
     }
 
   
