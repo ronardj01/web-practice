@@ -12,7 +12,7 @@
         <div class="container mt-5">
             <p class="text-danger text-center fs-2">Estas seguro que deseas eliminar al personaje <Strong class="text-primary">${nombre}</Strong></p>
             <form class="text-center" action="DeletePersonajeController" method="POST" >
-                <input type="hidden" value="${id}">
+                <input type="hidden" value="${id}" name="id">
                 <button class="btn btn-danger fs-3">Confirmar</button>
             </form>
         </div>
