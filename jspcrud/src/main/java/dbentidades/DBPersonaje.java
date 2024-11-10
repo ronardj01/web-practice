@@ -50,4 +50,17 @@ public abstract class DBPersonaje {
         }
     return personaje;
     }
+    
+    public static void updateChar(int oldID, Personaje newChar) throws SQLException{
+        String query = "UPDATE `personajes` SET `nombre` = '" + newChar.getNombre() + "' WHERE (`id` = '" + oldID+ "')";
+        Connection conn = DBConnection.getConnection();
+        Statement stm = conn.createStatement();
+        
+        stm.executeUpdate(query);
+        conn.close();
+    }
+    
+    public static void deleteChar(Personaje personaje){
+        
+    }
 }

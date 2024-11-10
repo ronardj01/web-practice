@@ -42,11 +42,17 @@ public class MostrarPersonasController extends HttpServlet {
         String nombre = request.getParameter("nombre");
         Personaje newPersonaje = new Personaje();
         newPersonaje.setNombre(nombre);
+        String mensaje = "";
         try {
             DBPersonaje.insertChar(newPersonaje);
+            mensaje = "Se ha agreagado el personaje correctamente en la base de datos";
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            mensaje = "No se ha podido ingresar el personaje en la base datos";
         }
+        request.setAttribute("mensaje", mensaje);
+        RequestDispatcher rd = request.getRequestDispatcher("ConfirmUpdateChar.jsp");
+        rd.forward(request, response);
     }
 
     @Override

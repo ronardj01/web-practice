@@ -12,14 +12,14 @@
         <div class="container-md mt-5 w-75 mx-auto">
             <h1 class="h1 mb-5 text-center">Modificar Personaje</h1>
             <div class="mb-5">
-                <h3 class="h3 text-center"><strong>${nombre}</strong> será modificado</h2>
+                <h3 class="h3 text-center"><strong class="text-primary">${nombre}</strong> será modificado</h2>
                     <form class="border p-3 mt-3 text-end w-50 mx-auto" action="ModificarPersonajesController" method="POST">
                         <div class="form-floating m-3">
                             <input type="text" class="form-control pt-4 fs-3" id="floatingInput" name="nombre">
                             <label for="floatingInput">Nuevo Nombre</label>
                         </div>
                         <input type="hidden" value="${id}" name="id">
-                        <button class="btn btn-primary ms-3" type="submit">Insertar</button>
+                        <button class="btn btn-primary ms-3" type="submit">Modificar</button>
                     </form>
             </div>
         </div>
