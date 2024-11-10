@@ -50,7 +50,7 @@
                                     <a class="nav-link"  href="ModificarPersonajesController<%= param%>">Modificar</a>
                                 </button>
                                 <button type="button" class="btn btn-outline-danger ms-5">
-                                    <a class="nav-link"  href="EliminarPersonajesController<%= param%>>">Eliminar</a>
+                                    <a class="nav-link"  href="DeletePersonajeController<%= param%>>">Eliminar</a>
                                 </button>
                             </td>
                         </tr>

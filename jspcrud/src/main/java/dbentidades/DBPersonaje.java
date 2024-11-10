@@ -52,7 +52,8 @@ public abstract class DBPersonaje {
     }
     
     public static void updateChar(int oldID, Personaje newChar) throws SQLException{
-        String query = "UPDATE `personajes` SET `nombre` = '" + newChar.getNombre() + "' WHERE (`id` = '" + oldID+ "')";
+        String query = "UPDATE `personajes` SET `nombre` = '" + newChar.getNombre() + "' WHERE (`id` = '" + oldID + "')";
+        System.out.println(query);
         Connection conn = DBConnection.getConnection();
         Statement stm = conn.createStatement();
         
@@ -60,7 +61,15 @@ public abstract class DBPersonaje {
         conn.close();
     }
     
-    public static void deleteChar(Personaje personaje){
+    public static void deleteChar(int id) throws SQLException{
+        String query = "DELETE FROM `personajes` WHERE (`id` = '" + id + "')";
+        Connection conn = DBConnection.getConnection();
+        Statement stm = conn.createStatement();
         
+        stm.executeUpdate(query);
+        stm.close();
     }
 }
+
+
+
