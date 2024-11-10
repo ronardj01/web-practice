@@ -10,6 +10,7 @@
     </head>
     <body>
         <div class="container mt-5">
+            <jsp:include page="IncludeNav.jsp"/>
             <p class="text-danger text-center fs-2">Estas seguro que deseas eliminar al personaje <Strong class="text-primary">${nombre}</Strong></p>
             <form class="text-center" action="DeletePersonajeController" method="POST" >
                 <input type="hidden" value="${id}" name="id">

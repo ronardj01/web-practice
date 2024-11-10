@@ -12,6 +12,7 @@
     </head>
     <body>
         <div class="container-md mt-5">
+            <jsp:include page="IncludeNav.jsp"/>
             <h1 class="h1 mb-5 text-center">Personajes</h1>
             <div class="mb-5">
                 <h2 class="h2 text-center">Insertar un Personaje Nuevo</h2>

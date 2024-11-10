@@ -10,6 +10,7 @@
     </head>
     <body>
         <div class="container-md mt-5 w-75 mx-auto">
+            <jsp:include page="IncludeNav.jsp"/>
             <h1 class="h1 mb-5 text-center">Modificar Personaje</h1>
             <div class="mb-5">
                 <h3 class="h3 text-center"><strong class="text-primary">${nombre}</strong> será modificado</h2>

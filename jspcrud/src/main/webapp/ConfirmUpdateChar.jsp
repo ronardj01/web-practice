@@ -10,7 +10,8 @@
     </head>
     <body>
         <div class="container text-center mt-5">
-            <p class="fs-3 mt-5">${mensaje}</p>
+            <jsp:include page="IncludeNav.jsp"/>
+            <p class="fs-3 mt-5 text-center">${mensaje}</p>
         </div>
 
     </body>
