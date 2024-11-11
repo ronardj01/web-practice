@@ -1,7 +1,8 @@
-
 package controllers;
 
+import dbentidades.DBPersonaje;
 import dbentidades.ProductoDAO;
+import entidades.Personaje;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,10 +11,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import entidades.Producto;
+import jakarta.servlet.RequestDispatcher;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-@WebServlet(name = "ActualizarProducto", urlPatterns = {"/ActualizarProducto"})
+@WebServlet(name = "ActualizarProductoServlet", urlPatterns = {"/ActualizarProductoServlet"})
 public class ActualizarProductoServlet extends HttpServlet {
+
     private ProductoDAO productoDAO;
 
     @Override
@@ -23,45 +28,48 @@ public class ActualizarProductoServlet extends HttpServlet {
 
     // Mostrar el formulario para actualizar un producto
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));  // Obtener el ID del producto a actualizar
-        Producto producto = (Producto) productoDAO.obtenerPorId(id);  // Obtener el producto desde la base de datos
-        request.setAttribute("producto", producto);  // Pasar el producto a la vista
-        request.getRequestDispatcher("/actualizarProducto.jsp").forward(request, response);  // Redirigir a la página para actualizar
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nombre = request.getParameter("nombre").replace("_", " ");
+        request.setAttribute("id", id);
+        request.setAttribute("nombre", nombre);
+        RequestDispatcher rd = request.getRequestDispatcher("ModificarProducto.jsp");
+        rd.forward(request, response);
     }
 
     // Recibir los datos del formulario y actualizar el producto
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nombre = request.getParameter("nombre");  // Recibir el nuevo nombre del producto
-        Producto producto = new Producto(id, nombre);  // Crear un objeto Producto con los nuevos datos
-        if (productoDAO.actualizar(producto)) {
-            response.sendRedirect("ProductoServlet?action=mostrar");  // Redirigir a la lista de productos
-        } else {
-        }
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ActualizarProducto</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ActualizarProducto at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String nuevoNombre = request.getParameter("nombre");
+        int viejoId = Integer.parseInt(request.getParameter("id"));
+        Producto producto = new Producto();
+        producto.setNombre(nuevoNombre);
+        String mensaje = "";
+
+        try {
+            productoDAO.updateChar(viejoId, producto); // Cambia la llamada a un método no estático
+            mensaje = "El Producto se actualizó correctamente";
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            mensaje = "No se pudo modificar el Producto";
         }
+
+        request.setAttribute("mensaje", mensaje);
+        RequestDispatcher rd = request.getRequestDispatcher("ConfirmUpdateChar.jsp");
+        rd.forward(request, response);
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
 
 }
