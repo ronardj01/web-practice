@@ -11,6 +11,7 @@
     </head>
     <body>
         <div class="container-md mt-5">
+            <jsp:include page="IncludeNav.jsp"/>
             <h1 class="h1 mb-5 text-center">Productos</h1>
             <div class="mb-5">
                 <h2 class="h2 text-center">Insertar un producto nuevo</h2>
@@ -35,34 +36,34 @@
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos"); 
-                            if (productos != null && !productos.isEmpty()) { 
+                            ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos");
+                            if (productos != null && !productos.isEmpty()) {
                                 int count = 1;
                                 String param;
                                 for (Producto producto : productos) {
                                     param = "?id=" + producto.getId() + "&nombre=" + producto.getNombre().replace(" ", "_");
                         %>
                         <tr>
-                            <th scope="row"><%= count %></th>
-                            <td class="fs-4"><%= producto.getNombre() %></td>
+                            <th scope="row"><%= count%></th>
+                            <td class="fs-4"><%= producto.getNombre()%></td>
                             <td>
                                 <button type="button" class="btn btn-outline-primary">
-                                    <a class="nav-link" href="ProductoServlet<%= param %>">Modificar</a>
+                                    <a class="nav-link" href="ProductoServlet<%= param%>">Modificar</a>
                                 </button>
                                 <button type="button" class="btn btn-outline-danger ms-5">
-                                    <a class="nav-link" href="BorrarProductoServlet<%= param %>">Eliminar</a>
+                                    <a class="nav-link" href="BorrarProductoServlet<%= param%>">Eliminar</a>
                                 </button>
                             </td>
                         </tr>
                         <%
-                                    count++;
-                                }
-                            } else {
+                                count++;
+                            }
+                        } else {
                         %>
                         <tr>
                             <td colspan="3" class="text-center">No hay productos disponibles.</td>
                         </tr>
-                        <% } %>
+                        <% }%>
                     </tbody>
                 </table>
             </div>
