@@ -48,7 +48,7 @@
                             <td class="fs-4"><%= producto.getNombre()%></td>
                             <td>
                                 <button type="button" class="btn btn-outline-primary">
-                                    <a class="nav-link" href="ProductoServlet<%= param%>">Modificar</a>
+                                    <a class="nav-link" href="ActualizarProductoServlet<%= param%>">Modificar</a>
                                 </button>
                                 <button type="button" class="btn btn-outline-danger ms-5">
                                     <a class="nav-link" href="BorrarProductoServlet<%= param%>">Eliminar</a>

@@ -6,6 +6,15 @@ import entidades.Producto;
 
 public class ProductoDAO {
 
+    public static void deleteChar(int id) throws SQLException {
+        String query = "DELETE FROM `producto` WHERE (`id` = '" + id + "')";
+        Connection conn = DBConnection.getConnection();
+        Statement stm = conn.createStatement();
+
+        stm.executeUpdate(query);
+        stm.close();
+    }
+
     private Connection connection;
 
     public ProductoDAO() {
@@ -55,26 +64,13 @@ public class ProductoDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, producto.getNombre());
             stmt.setInt(2, producto.getId());
-            res =  stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
-    // Borrar un producto
-    public boolean borrar(int id) {
-        boolean res = false;
-        try {
-            String sql = "DELETE FROM producto WHERE id = ?";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
             res = stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
     }
+
 
     public Producto obtenerPorId(int id) {
         Producto producto = null;

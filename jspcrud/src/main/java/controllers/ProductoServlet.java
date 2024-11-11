@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import entidades.Producto;
+import jakarta.servlet.RequestDispatcher;
 import java.util.ArrayList;
 
 @WebServlet(name = "ProductoServlet", urlPatterns = {"/ProductoServlet"})
@@ -42,6 +43,10 @@ public class ProductoServlet extends HttpServlet {
             String nombre = request.getParameter("nombre");
             Producto producto = new Producto(0, nombre); // ID se asigna automáticamente
             productoDAO.agregar(producto);
+            String mensaje = "Se ha agregado el producto correctamente";
+            request.setAttribute("mensaje", mensaje);
+            RequestDispatcher rd = request.getRequestDispatcher("ConfirmUpdateChar.jsp");
+            rd.forward(request, response);
     }
     
 
