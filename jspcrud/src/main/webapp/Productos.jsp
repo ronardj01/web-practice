@@ -35,7 +35,7 @@
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos"); // Ajuste en el nombre del atributo
+                            ArrayList<Producto> productos = (ArrayList<Producto>) request.getAttribute("productos"); 
                             if (productos != null && !productos.isEmpty()) { 
                                 int count = 1;
                                 String param;

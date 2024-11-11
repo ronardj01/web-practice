@@ -38,15 +38,12 @@ public class ProductoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        if ("agregar".equals(action)) {
+ 
             String nombre = request.getParameter("nombre");
             Producto producto = new Producto(0, nombre); // ID se asigna automáticamente
             productoDAO.agregar(producto);
-            response.sendRedirect("ProductoServlet?action=mostrar");
-        }
     }
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
